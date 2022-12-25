@@ -1,5 +1,5 @@
 import { Router } from 'express'
-import { createShortUrl, handleRedirect } from '../controllers/shortUrlController';
+import { createShortUrl, handleRedirect, getAnalytics } from '../controllers/shortUrlController';
 import validateResource from '../middleware/validateResource';
 import createShortUrlSchema from '../schemas/createShortUrlSchema';
 
@@ -12,7 +12,8 @@ router.get('/healthcheck', (req, res) => {
 router.post('/api/url',
     validateResource(createShortUrlSchema),
     createShortUrl);
+router.get("/api/analytics", getAnalytics);
+router.get("/:shortId", handleRedirect);
 
-router.get("/:shortId", handleRedirect)
 
 export default router

@@ -1,26 +1,44 @@
 import { Request, Response } from 'express';
+import analyticsModel from '../models/analyticsModel';
 import shortUrlModel from '../models/shortUrlModel';
 
 export const createShortUrl = async (req: Request, res: Response) => {
-    console.log(req.body)
-    const { destination } = req.body;
-    const newUrl = await shortUrlModel.create({
-        destination
-    })
-    return res.json({
-        shortUrl: newUrl
-    })
+    try {
+        const { destination } = req.body;
+        const newUrl = await shortUrlModel.create({
+            destination
+        })
+        return res.json({
+            shortUrl: newUrl
+        })
+    } catch (ex: any) {
+        return res.status(500).json({ message: ex.message })
+    }
+
 }
 
 export const handleRedirect = async (req: Request, res: Response) => {
-    const { shortId } = req.params;
-    const url = await shortUrlModel.findOne({
-        shortId
-    }).lean()
+    try {
+        const { shortId } = req.params;
+        const url = await shortUrlModel.findOne({
+            shortId
+        }).lean()
 
-    if (url) {
+        if (!url)
+            return res.status(404).json({ message: 'shortId is not exists!' })
+
+        await analyticsModel.create({ shortUrl: url._id })
         return res.json({ destination: url.destination })
-    } else {
-        return res.status(404).json({ message: 'shortId is not exists!' })
+    } catch (ex: any) {
+        return res.status(500).json({ message: ex.message })
+    }
+}
+
+export const getAnalytics = async (req: Request, res: Response) => {
+    try {
+        const analytics = await analyticsModel.find({}).lean();
+        return res.json(analytics)
+    } catch (ex: any) {
+        return res.status(500).json({ message: ex.message })
     }
 }
