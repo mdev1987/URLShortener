@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
-import analyticsModel from '../models/analyticsModel';
-import shortUrlModel from '../models/shortUrlModel';
+import analyticsModel from '../models/analyticsModel.js';
+import shortUrlModel from '../models/shortUrlModel.js';
 
 export const createShortUrl = async (req: Request, res: Response) => {
     try {

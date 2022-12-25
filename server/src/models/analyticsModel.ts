@@ -1,5 +1,5 @@
 import { Schema, model, Document } from "mongoose";
-import { ShortURL } from './shortUrlModel';
+import { ShortURL } from './shortUrlModel.js';
 
 interface Analytics extends Document {
     shortUrl: ShortURL

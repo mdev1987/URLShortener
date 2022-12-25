@@ -1,12 +1,13 @@
 {
-  "name": "server",
+  "name": "url-shortener-server",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "./dist/app.js",
   "type": "module",
   "scripts": {
     "test": "jest",
-    "start": "nodemon --config nodemon.json src/app.ts"
+    "develop": "nodemon --config nodemon.json src/app.ts",
+    "start": "node ./dist/app.js"
   },
   "keywords": [],
   "author": "mdeveloper1987",

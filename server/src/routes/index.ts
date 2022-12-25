@@ -1,7 +1,8 @@
 import { Router } from 'express'
-import { createShortUrl, handleRedirect, getAnalytics } from '../controllers/shortUrlController';
-import validateResource from '../middleware/validateResource';
-import createShortUrlSchema from '../schemas/createShortUrlSchema';
+import { createShortUrl, handleRedirect, getAnalytics }
+    from '../controllers/shortUrlController.js';
+import validateResource from '../middleware/validateResource.js';
+import createShortUrlSchema from '../schemas/createShortUrlSchema.js';
 
 const router = Router();
 

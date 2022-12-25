@@ -5,5 +5,5 @@ export const db = async () => {
     mongoose.set('strictQuery', false);
     mongoose.connect(config.get('mongodb')).then(() => {
         console.log('Successfully connected to database')
-    }).catch(ex => console.log(`Error connecting to database: ${ex.message}`))
+    }).catch((ex: any) => console.log(`Error connecting to database: ${ex.message}`))
 }
