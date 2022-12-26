@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
-import { Input, Button, Box, Heading, InputGroup } from '@chakra-ui/react'
+import { Input, Button, Box, InputGroup } from '@chakra-ui/react'
 import axios from 'axios'
-import { SERVER_ENDPOINT } from '../config'
+import { HOST, SERVER_ENDPOINT } from '../config'
 
 function URLShortenerForm() {
     const [destination, setDestination] = useState('')
@@ -30,10 +30,14 @@ function URLShortenerForm() {
     }
     return (
         <Box
-            pos='relative' 
+            pos='relative'
             borderRadius="5"
-            padding="10"        
-            zIndex="2" 
+            padding="10"
+            paddingBottom="5"
+            zIndex="2"
+            display="flex"
+            flexDirection="column"
+            justifyContent="space-between"
             backgroundColor="white">
             <form onSubmit={handleSubmit}>
                 <InputGroup>
@@ -49,10 +53,17 @@ function URLShortenerForm() {
                     <Box color='red'>{errorMessage}</Box>
                 )
                 }
-                {shortURL.shortId && (
-                    <a href={`${SERVER_ENDPOINT}/${shortURL?.shortId}`}>Click ME</a>
-                )}
             </form>
+            <Box marginTop="5"
+                color="darkblue"
+                alignSelf="center"
+                fontWeight="bold">
+                {shortURL.shortId && (
+                    <a href={`${HOST}/${shortURL?.shortId}`}>
+                        {`${HOST}/${shortURL?.shortId}`}
+                    </a>
+                )}
+            </Box>
         </Box>
     )
 }

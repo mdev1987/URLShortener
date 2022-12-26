@@ -23,9 +23,7 @@ function Background(props: Props) {
     }, [])
     const { width, heigth } = windowDimension;
     const img = `https://picsum.photos/seed/${random}/${width}/${heigth}.webp?blur=3`;
-    return (
-        <Box backgroundColor="#8EC5FC"
-            backgroundImage="linear-gradient(62deg, #8EC5FC 0%, #E0C3FC 100%)">
+    return (        
             <Box height="100vh"
                 display="flex"
                 backgroundColor="transparent"
@@ -36,8 +34,7 @@ function Background(props: Props) {
                 backgroundPosition="center"
                 backgroundSize="cover">
                 {props.children}
-            </Box>
-        </Box>
+            </Box>        
     )
 }
 
