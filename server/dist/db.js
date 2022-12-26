@@ -11,7 +11,7 @@ import config from 'config';
 import mongoose from 'mongoose';
 export const db = () => __awaiter(void 0, void 0, void 0, function* () {
     mongoose.set('strictQuery', false);
-    mongoose.connect(config.get('mongodb')).then(() => {
+    mongoose.connect(config.get('mongodb_url')).then(() => {
         console.log('Successfully connected to database');
     }).catch((ex) => console.log(`Error connecting to database: ${ex.message}`));
 });

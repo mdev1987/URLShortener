@@ -12,6 +12,12 @@ import shortUrlModel from '../models/shortUrlModel.js';
 export const createShortUrl = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const { destination } = req.body;
+        const url = yield shortUrlModel.findOne({ destination }).lean();
+        if (url) {
+            return res.json({
+                shortUrl: url
+            });
+        }
         const newUrl = yield shortUrlModel.create({
             destination
         });
